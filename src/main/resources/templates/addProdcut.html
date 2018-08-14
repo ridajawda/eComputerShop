@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Products List</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/gtvg.css" th:href="@{/css/bootstrap.min.css}" />
+
+
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+
+<div class="container-wraper">
+    <div class="container">
+        <div class="page-header">
+            <h1>Add New Product Information</h1>
+        </div>
+        <div class="container">
+
+            <div class="row">
+
+            </div>
+            <form class="form-group" th:object="${product}"
+                  th:action="@{/admin/prodcutInventory/addProduct/saveProduct}" method="post">
+
+
+                <div class="form-group">
+                    <label>Product Name</label> <input type="text" class="form-control"
+                                                     th:field="*{name}" />
+                </div>
+                <div class="form-group">
+                 <div>
+                    <label>Category</label>
+                </div>
+                    <input type="radio" th:field="*{category} "name="Computer"  id="Computer" value="computer" />
+                    <label for="Computer">Computer</label>
+                    <input type="radio" th:field="*{category} "name="Accessories"  id="Accessories" value="accessories" />
+                    <label for="Accessories">Accessories</label>
+                    <input type="radio" th:field="*{category}  "name="other" id="other" value="other" />
+                    <label for="other">Other</label>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label>Condition</label>
+                    </div>
+                    <input type="radio" th:field="*{cond} "name="new"  id="new" value="new" />
+                    <label for="new">New</label>
+                    <input type="radio" th:field="*{cond} "name="used"  id="used" value="used" />
+                    <label for="used">Used</label>
+                </div>
+                <div class="form-group">
+                    <label>Description</label> <input type="textarea" class="form-control"
+                                                      th:field="*{description}"/>
+
+                    <label>Items in Stock</label> <input type="text" class="form-control"
+                                                         th:field="*{inStock}"/>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Status</label>
+                    </div>
+                    <input type="radio" th:field="*{cond} "name="active"  id="active" value="active" />
+                    <label for="Active">Active</label>
+                    <input type="radio" th:field="*{cond} "name="inActive"  id="inActive" value="inActive" />
+                    <label for="inActive">InActive</label>
+                </div>
+
+                <div class="form-group">
+                    <label>Manufacturer</label> <input type="text" class="form-control"
+                                                    th:field="*{manu}" />
+                </div>
+                <div class="form-group">
+                    <label>Price</label> <input type="text" class="form-control"
+                                                       th:field="*{price}" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="#" th:href="@{/admin/productInventory}" class="btn btn-danger"
+                   role="button">Cancel</a>
+            </form>
+
+        <!-- FOOTER -->
+        <div th:replace="fragments/footer :: footer"></div>
+    </div>
+</div><!-- /.container -->
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="js/jquery-1.11.3.minjs"><\/script>')</script>
+<script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>
