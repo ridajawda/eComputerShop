@@ -1,6 +1,11 @@
 package com.onlineclasses.demo.domain;
 
+import sun.awt.SunHints;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "product")
@@ -11,12 +16,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    //@NotNull (message = "Product name should not be null")
     @Column(name = "product_NAME")
     private String name;
 
     @Column(name = "catgegory")
     private String category;
 
+    //@Min(value=0, message = "The product unit should not be less than zero")
     @Column(name = "instoc")
     private int inStock;
 
@@ -32,10 +39,12 @@ public class Product {
     @Column(name = "manu")
     private String manu;
 
+   // @Min(value=0, message = "The product price should not be less than zero")
     @Column(name = "price")
     private double price;
 
     @Lob
+    @Column(name = "image")
     private Byte[] image;
 
     public long getId() {

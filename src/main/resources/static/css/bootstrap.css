@@ -2912,7 +2912,10 @@ select[multiple].input-lg {
   display: block;
   margin-top: 5px;
   margin-bottom: 10px;
-  color: #737373;
+  color: red;
+}
+.has-error .help-block {
+  color: red;
 }
 @media (min-width: 768px) {
   .form-inline .form-group {

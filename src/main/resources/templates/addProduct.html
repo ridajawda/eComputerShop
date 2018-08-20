@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Products List</title>
+    <title>Add Product</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" media="all"
@@ -31,17 +31,17 @@
         </div>
         <div class="container">
 
-            <div class="row">
 
-            </div>
-            <form class="form-group" th:object="${product}"
-                  th:action="@{/admin/prodcutInventory/addProduct/saveProduct}" method="post">
+            <form name="myForm" class="form-group" th:object="${product}"
+                  th:action="@{/admin/prodcutInventory/addProduct/saveProduct}" method="post" >
 
+                <input th:type="hidden" name="id" th:field="${product.id}" />
 
                 <div class="form-group">
-                    <label>Product Name</label> <input type="text" class="form-control"
-                                                     th:field="*{name}" />
+                    <label>Product Name</label>
+                    <input type="text" class="form-control" name="name" required th:field="*{name}"/>
                 </div>
+
                 <div class="form-group">
                  <div>
                     <label>Category</label>
@@ -63,20 +63,21 @@
                     <label for="used">Used</label>
                 </div>
                 <div class="form-group">
-                    <label>Description</label> <input type="textarea" class="form-control"
+                    <label>Description</label> <input type="text" class="form-control"
                                                       th:field="*{description}"/>
 
-                    <label>Items in Stock</label> <input type="text" class="form-control"
-                                                         th:field="*{inStock}"/>
+                    <label>Items in Stock</label>
+                    <input type="number" class="form-control" min="0" th:field="*{inStock}"  />
+
                 </div>
 
                 <div class="form-group">
                     <div>
                         <label>Status</label>
                     </div>
-                    <input type="radio" th:field="*{cond} "name="active"  id="active" value="active" />
+                    <input type="radio" th:field="*{stat} "name="active"  id="active" value="active" />
                     <label for="Active">Active</label>
-                    <input type="radio" th:field="*{cond} "name="inActive"  id="inActive" value="inActive" />
+                    <input type="radio" th:field="*{stat} "name="inActive"  id="inActive" value="inActive" />
                     <label for="inActive">InActive</label>
                 </div>
 
@@ -85,8 +86,8 @@
                                                     th:field="*{manu}" />
                 </div>
                 <div class="form-group">
-                    <label>Price</label> <input type="text" class="form-control"
-                                                       th:field="*{price}" />
+                    <label>Price</label> <input type="number" min="0" class="form-control" th:field="*{price}"  />
+
                 </div>
 
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -98,14 +99,7 @@
         <div th:replace="fragments/footer :: footer"></div>
     </div>
 </div><!-- /.container -->
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="js/jquery-1.11.3.minjs"><\/script>')</script>
-<script src="js/bootstrap.min.js"></script>
+</div>
 
 </body>
 </html>

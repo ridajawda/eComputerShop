@@ -1,11 +1,5 @@
 package com.onlineclasses.demo.controller;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.servlet.http.HttpServletResponse;
-
 import com.onlineclasses.demo.domain.Product;
 import com.onlineclasses.demo.service.ImageService;
 import com.onlineclasses.demo.service.ProductService;
@@ -18,6 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * Created by jt on 7/3/17.
  */
@@ -27,18 +26,16 @@ public class ImageController {
     private final ImageService imageService;
     private final ProductService productService;
 
-   
     public ImageController(ImageService imageService, ProductService productService) {
-		super();
-		this.imageService = imageService;
-		this.productService = productService;
-	}
+        this.imageService = imageService;
+        this.productService = productService;
+    }
 
-	@GetMapping("product/{id}/image")
+    @GetMapping("product/{id}/image")
     public String showUploadForm(@PathVariable String id, Model model){
         model.addAttribute("product", productService.findById(Long.valueOf(id)));
 
-        return "product/imageuploadform";
+        return "imageuploadform";
     }
 
     @PostMapping("product/{id}/image")
@@ -46,10 +43,12 @@ public class ImageController {
 
         imageService.saveImageFile(Long.valueOf(id), file);
 
-        return "redirect:/product/" + id + "/show";
-    }
+        return "redirect:/admin/productInventory";
 
-    @GetMapping("product/{id}/productImage")
+
+          }
+
+    @GetMapping("product/{id}/productimage")
     public void renderImageFromDB(@PathVariable String id, HttpServletResponse response) throws IOException {
         Product product = productService.findById(Long.valueOf(id));
 

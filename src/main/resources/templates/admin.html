@@ -33,9 +33,18 @@
         </div>
 
 <h3>
-    <a href="#" th:href="@{/admin/productInventory}" class="btn btn-primary"
-       role="button">Products Inventory</a>
+    <a href="#" th:href="@{/admin/productInventory}"
+       >Products Inventory</a>
 </h3>
+
+        <form th:action="@{/logout}" method="post" 	class="form-horizontal">
+
+            <div style="margin-top: 10px" class="form-group">
+                <div class="col-sm-6 controls">
+                    <button type="submit" class="btn btn-success">Logout</button>
+                </div>
+            </div>
+        </form>
 
         <!-- FOOTER -->
         <div th:replace="fragments/footer :: footer"></div>

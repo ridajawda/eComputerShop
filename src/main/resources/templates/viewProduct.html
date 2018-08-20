@@ -35,9 +35,11 @@
 
     <div class="container">
         <div class="row">
-          <div class="col-md-5">
-              <img src="#" alt="image" style="width: 100%; height: 300px" />
-          </div>
+            <div class="col-md-6">
+                <img src="../../static/images/guacamole400x400WithX.jpg"
+                     th:src="@{'/product/' + ${product.id} + '/productimage'}"
+                     width="300" height="200">
+            </div>
             <div class="col-md-5">
                 <h3 th:text="${product.name}"></h3>
                 <p th:text="${product.description}"></p>
